@@ -78,57 +78,38 @@ The full form of an ARM is an advanced reduced instruction set computer (RISC) m
 
 ## STM 32 CUBE PROGRAM :
 ```
-
 #include "main.h"
 #include "stdbool.h"
-bool IRSENSOR;
-void IRPAIR();
+#include"stdio.h"
+bool IR ;
 
-void SystemClock_Config(void);
-static void MX_GPIO_Init(void);
-
-int main(void)
-{
-  HAL_Init();
-  SystemClock_Config();
-  MX_GPIO_Init();
+IR=   HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_3);
 
   while (1)
   {
-    IRPAIR();
-  }
-}
 
-void IRPAIR()
-{
-	IRSENSOR = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_4);
-	if (IRSENSOR==0)
-	{
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
-		HAL_Delay(1000);
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
-		HAL_Delay(1000);
-	}
-	else
-	{
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
-		HAL_Delay(1000);
+	  if(IR ==1)
+	     {
+	    	 HAL_GPIO_WritePin(GPIOA,GPIO_PIN_0,GPIO_PIN_RESET);
+	    	 HAL_Delay(1000);
+	    	 HAL_GPIO_WritePin(GPIOA,GPIO_PIN_0,GPIO_PIN_SET);
+	    	 HAL_Delay(1000);
 
-	}
-}
+	     }
+	     else
+	     {
+	    	 HAL_GPIO_WritePin(GPIOA,GPIO_PIN_0,GPIO_PIN_RESET);
+	    	 HAL_Delay(1000);
+	     }
+
+	  }
+
 ```
 
 
 ## Output  :
 
-## OBJECT 
-![With object ](https://github.com/user-attachments/assets/80320c92-6db6-4e8a-994f-52846e838753)
-
-
-
-## WITHOUT OBJECT
- 
- ![WITHOUT OBJECT](https://github.com/user-attachments/assets/ac0c479a-5f18-4ba6-9b0f-1196d97f08b6)
+![IOT 2](https://github.com/user-attachments/assets/600b74ab-93ac-4ea5-bad2-454bafe62dab)
 
  
 ## Result :
